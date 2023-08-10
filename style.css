@@ -7,8 +7,8 @@
 :root {
   font-size: 62.5%;
 
-  --ff-primary: 'Poppins', sans-serif;
-  --text-color: #000000;
+  --ff-primary: "Poppins", sans-serif;
+  --text-color: #ffffff;
   --hue: 194;
   --primary-color: hsl(var(--hue), 100%, 63%);
 }
@@ -16,7 +16,7 @@
 body {
   font-size: 1.6rem;
   color: var(--text-color);
-  background-color: #ffffff;
+  background-color: #000000;
 }
 
 body * {
@@ -35,10 +35,6 @@ body * {
   border-width: 0;
 }
 
-button {
-  background-color: var(--primary-color);
-}
-
 #app {
   padding: 2rem;
   max-width: 500px;
@@ -49,4 +45,108 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  margin: 2.5rem 0;
+}
+
+header h1 {
+  font-size: 2rem;
+  text-transform: uppercase;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+}
+
+.search input {
+  height: 3.2rem;
+  border: 1px solid #092D38;
+  border-radius: 5px;
+  background: #06181C;
+  padding: 0 0.8rem;
+  border-radius: 5px;
+
+}
+
+.search button {
+  background-color: var(--primary-color);
+  border-radius: 0 0.4rem 0.4rem 0;
+  height: 3.2rem;
+  border: none;
+  padding: 0 1rem;
+
+  cursor: pointer;
+}
+
+.search button:hover {
+  filter: brightness(1.1);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+
+  box-shadow: 0 1rem 2rem -1rem rgba(0, 0, 0, 0.3);
+}
+
+table * {
+  font-size: 1.4rem;
+  color: var(--text-color);
+}
+
+table th {
+  background: #092D38;
+  text-align: left;
+  font-weight: normal;
+  padding: 1.5rem;
+}
+
+table th:first-child {
+  border-top-left-radius: 0.4rem;
+}
+
+table th:last-child {
+  border-top-right-radius: 0.4rem;
+}
+
+table tr:nth-child(even) {
+  background: rgba(6, 22, 27, 0.50);;
+}
+table tr:nth-child(odd) {
+  background: #06181C;
+}
+
+table td {
+  padding: 1.5rem;
+  text-align: left;
+}
+
+td.user {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+td.user img {
+  width: 5rem;
+  height: 5rem;
+
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+td.user a {
+  text-decoration: none;
+}
+
+td.user a p {
+  font-weight: bold;
+}
+
+td .remove {
+  background: none;
+  border: none;
+
+  color: red;
 }
