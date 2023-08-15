@@ -1,25 +1,28 @@
+export class GithubUser {
+  static search(username) {
+    const endpoint = `https://api.github.com/users/${username}`
+    return fetch(endpoint).then(data => data.json())
+      .then(({ login, name, public_repos, followers, company }) => (
+        {
+          login,
+          name,
+          public_repos,
+          followers,
+          company,
+        }))
+  }
+}
+
 // classe que vai conter a logica dos dados
 // como os dados serão estruturados
 export class Favorites {
   constructor(root) {
     this.root = document.querySelector(root);
     this.load();
+
+    GithubUser.search('Thalys001').then(user => console.log(user));
   }
   load() {
-    this.entries = [
-      {
-        login: 'Thalys001',
-        name: "Thalys Leite",
-        public_repos: '30',
-        followers: '10'
-      },
-      {
-        login: 'luizfelipebraga',
-        name: "Luiz Felipe Braga",
-        public_repos: '70',
-        followers: '20'
-      }
-    ]
   }
 
   delete(user) {
@@ -39,6 +42,16 @@ export class FavoritesView extends Favorites {
     this.tbody = this.root.querySelector('table tbody');
 
     this.update();
+    this.onadd();
+  }
+
+  onadd() {
+    const addButton = this.root.querySelector('.search button');
+    addButton.onclick = () => {
+      const { value } = this.root.querySelector('.search input');
+
+      this.add(value);
+    }
   }
 
   update() {
