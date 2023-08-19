@@ -26,6 +26,7 @@ export class Favorites {
       }
 
       const user = await GithubUser.search(username)
+      console.log(user, 'usr');
       if (user.login === undefined) {
         throw new Error('User not found')
       }
@@ -81,16 +82,19 @@ export class FavoritesView extends Favorites {
       row.querySelector('.user span').textContent = user.login
       row.querySelector('.repositories').textContent = user.public_repos
       row.querySelector('.followers').textContent = user.followers
+      row.querySelector('.bio').textContent = user.bio
 
+      
       row.querySelector('.remove').onclick = () => {
         const isOk = confirm('Are you sure you want to remove?')
         if (isOk) {
           this.delete(user)
         }
       }
-
+      
       this.tbody.append(row)
     })
+    console.log(this.entries, 'entries');
   }
 
   createRow() {
@@ -108,6 +112,7 @@ export class FavoritesView extends Favorites {
     </td>
     <td class="repositories">30</td>
     <td class="followers">2</td>
+    <td class="bio">1</td>
     <td>
       <button class="remove">&times;</button>
     </td>
