@@ -63,11 +63,20 @@ export class FavoritesView extends Favorites {
 
   onadd() {
     const addButton = this.root.querySelector('.search button');
-    addButton.onclick = () => {
-      const { value } = this.root.querySelector('.search input');
+    const inputField = this.root.querySelector('.search input');
 
+    const addUsername = () => {
+      const { value } = inputField;
       this.add(value);
-    }
+    };
+
+    addButton.onclick = addUsername;
+
+    inputField.addEventListener('keypress', (event) => {
+      if (event.key === 'Enter') {
+        addUsername();
+      }
+    });
   }
 
   update() {
@@ -84,14 +93,14 @@ export class FavoritesView extends Favorites {
       row.querySelector('.followers').textContent = user.followers
       row.querySelector('.bio').textContent = user.bio
 
-      
+
       row.querySelector('.remove').onclick = () => {
         const isOk = confirm('Are you sure you want to remove?')
         if (isOk) {
           this.delete(user)
         }
       }
-      
+
       this.tbody.append(row)
     })
     console.log(this.entries, 'entries');
